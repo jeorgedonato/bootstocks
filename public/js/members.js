@@ -28,7 +28,7 @@ $(document).ready(function() {
     const endDate = daysOfMonth[29];
     // ticker = 'AAPL'
     $.get(
-      `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/daily/${ticker}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5&startDate=${startDate}&endDate=${endDate}`
+      `https://api.tiingo.com/tiingo/daily/${ticker}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5&startDate=${startDate}&endDate=${endDate}`
     )
       .then(function(data) {
         const stockChart = $("#stockChart");
@@ -183,7 +183,7 @@ $(document).ready(function() {
       const symbol = $(this).data("symbol");
       // console.log(`${id} : ${symbol}`)
       const stockData = await $.get(
-        `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
+        `https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
       );
       const currentPrice = stockData[0].adjClose;
       const stock = { stockId: id, currentStocKPrice: currentPrice };
@@ -213,7 +213,7 @@ $(document).ready(function() {
     const symbol = $(this).data("symbol");
     try {
       const stockData = await $.get(
-        `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
+        `https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
       );
       const currentPrice = stockData[0].adjClose;
       const stock = { stockId: id, currentStocKPrice: currentPrice };
