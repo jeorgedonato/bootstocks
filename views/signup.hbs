@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <img src="../images/Screen Shot 2020-09-20 at 2.48.21 PM.png" alt="BootStocks" style="width: 100px;">
+  <span style="margin-left: 15px; font-size: 40px; color: white;">BootStocks</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-12 col-md-offset-6">
+         <br>
+         <h2>Sign-up for a BootStocks account:</h2>
+         <br>
+         <form class="signup">
+            <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+               <span class="sr-only">Error:</span> <span class="msg"></span>
+            </div>
+            <div class="form-group">
+               <label for="firstname">Firstname</label>
+               <input type="text" class="form-control" id="firstname" placeholder="Firstname">
+            </div>
+            <div class="form-group">
+               <label for="lastname">Lastname</label>
+               <input type="text" class="form-control" id="lastname" placeholder="Lastname">
+            </div>
+            <div class="form-group">
+               <label for="username">Username</label>
+               <input type="text" class="form-control" id="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+               <label for="exampleInputPassword1">Password</label>
+               <input type="password" class="form-control" id="password-input" placeholder="Password">
+            </div>
+            <div class="form-group">
+               <label for="exampleInputPassword1">Confirm Password</label>
+               <input type="password" class="form-control" id="cpassword-input" placeholder="Confirm Password">
+            </div>
+            <div class="custom-control custom-switch">
+               <input type="checkbox" class="custom-control-input" id="show-pass">
+               <label class="custom-control-label" for="show-pass">Show Password</label>
+            </div>
+            <button type="submit" class="button">Sign-up <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+         </form>
+         <br />
+         <p>Or log-in to your account <a href="/">here</a></p>
+         <br><br><br><br>
+      </div>
+   </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="../js/utils/setHeader.js"></script>
+<script type="text/javascript" src="../js/signup.js"></script>

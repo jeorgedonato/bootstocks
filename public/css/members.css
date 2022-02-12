@@ -1,0 +1,38 @@
+.navbar {
+  font-size: 14px;
+}
+
+.nav-item-pad {
+  padding-left: 50px;
+}
+
+.jumbotron {
+  padding: 1.5rem 2rem;
+}
+
+.userimage {
+  border: white solid 4px
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+} 
+
+.chart-input {
+  margin-right: 20px;
+}
+
+footer {
+  clear: both;
+  font-size: 15px;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: -90px;
+  border-top: 8px solid black;
+  background: #007bff;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
