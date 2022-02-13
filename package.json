@@ -30,6 +30,10 @@
     "mysql2": "^2.2.2",
     "nodemon": "^2.0.4",
     "request": "^2.88.2",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "ws": "^8.5.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
   }
 }
