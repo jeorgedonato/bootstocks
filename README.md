@@ -72,7 +72,7 @@ https://github.com/phtrmd8/BootStocks
 
 
 ## Heroku Deployed Link:
-https://bootstocks.herokuapp.com/
+https://bootstocksapp.herokuapp.com/
 
 
 ## Screenshots:
