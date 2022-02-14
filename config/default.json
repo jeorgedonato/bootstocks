@@ -1,3 +1,4 @@
 {
-    "jwtSecretKey" : "bootstocks"
+    "jwtSecretKey" : "bootstocks",
+    "tiingoToken"  : "32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5"
 }

@@ -34,8 +34,9 @@ $(document).ready(function() {
       .val()
       .trim();
     disableSubBtn();
-    $.get(
-      `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/utilities/search/${stockSymbol}?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
+    $.post(
+      '/api/stocks/tiingo/search',
+      {symbol: stockSymbol}
     )
       .then(function(data) {
         if (data.length > 0) {
@@ -79,8 +80,9 @@ $(document).ready(function() {
 
     try {
       disableSubBtn();
-      const stockData = await $.get(
-        `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
+      const stockData = await $.post(
+        '/api/stocks/tiingo/get-daily',
+        {symbol: symbol}
       );
       unDisableSubBtn();
       // console.log(stockData);
