@@ -7,6 +7,8 @@
 // Requiring our models
 const db = require("../models");
 const auth = require("../middleware/auth");
+const { default: axios } = require("axios");
+const config = require('config');
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -132,4 +134,65 @@ module.exports = function(app) {
       res.status(500).json(error);
     }
   });
+
+  app.put("/api/stocks/stockgain", auth, async function(req, res) {
+    const { stockId, currentStocKPrice } = req.body;
+    try {
+      const currentStock = await db.Stock.findByPk(stockId);
+      // const currentUser = await db.User.findByPk(req.user.id);
+      const currentTotal =
+        parseFloat(currentStocKPrice) * parseInt(currentStock.stock_quantity);
+      currentStock.stock_gain = currentTotal - parseFloat(currentStock.total);
+      const stock = await currentStock.save();
+      // console.log(currentTotal - parseFloat(currentStock.total));
+      res.status(200).json({
+        stockGain: stock.stock_gain,
+        alert: `${stock.stock_symbol} is synced! ${
+          stock.stock_gain < 0
+            ? "You loss $ " + stock.stock_gain
+            : "You gained $ " + stock.stock_gain
+        }`
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  });
+
+  app.post("/api/stocks/tiingo/init", auth, async function (req, res) {
+    try {
+      let initStock = await axios.get(req?.body.url)
+      res.json(initStock.data)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+
+  app.post("/api/stocks/tiingo/get-daily", auth, async function (req, res) {
+    try {
+      const symbol = req?.body?.symbol
+      let urlTemp = `https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=${config.get('tiingoToken')}`
+      let dailyStock = await axios.get(urlTemp)
+      res.json(dailyStock.data)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+
+  app.post("/api/stocks/tiingo/search", auth, async function (req, res) {
+    try {
+      const symbol = req?.body?.symbol
+      let urlTemp = `https://api.tiingo.com/tiingo/utilities/search/${symbol}?token=${config.get('tiingoToken')}`
+      let dailyStock = await axios.get(urlTemp)
+      res.json(dailyStock.data)
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  })
+
+
+
 };

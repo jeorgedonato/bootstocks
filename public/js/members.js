@@ -27,10 +27,12 @@ $(document).ready(function() {
     const startDate = daysOfMonth[0];
     const endDate = daysOfMonth[29];
     // ticker = 'AAPL'
-    $.get(
-      `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/daily/${ticker}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5&startDate=${startDate}&endDate=${endDate}`
+    $.post(
+      '/api/stocks/tiingo/init',
+      { url: `https://api.tiingo.com/tiingo/daily/${ticker}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5&startDate=${startDate}&endDate=${endDate}`}
     )
-      .then(function(data) {
+      .done(function(data) {
+        // return console.log(data)
         const stockChart = $("#stockChart");
         const myChart = new Chart(stockChart, {
           type: "line",
@@ -62,7 +64,7 @@ $(document).ready(function() {
         });
         myChart.update();
       })
-      .catch(function(err) {
+      .fail(function(err) {
         console.log("Invalid Ticker");
         $(".invalid-alert")
           .html("Invalid Symbol")
@@ -182,8 +184,9 @@ $(document).ready(function() {
       const id = $(this).data("id");
       const symbol = $(this).data("symbol");
       // console.log(`${id} : ${symbol}`)
-      const stockData = await $.get(
-        `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
+      const stockData = await $.post(
+        '/api/stocks/tiingo/get-daily',
+        {symbol: symbol} 
       );
       const currentPrice = stockData[0].adjClose;
       const stock = { stockId: id, currentStocKPrice: currentPrice };
@@ -212,8 +215,9 @@ $(document).ready(function() {
     const id = $(this).data("id");
     const symbol = $(this).data("symbol");
     try {
-      const stockData = await $.get(
-        `https://cors-anywhere.herokuapp.com/https://api.tiingo.com/tiingo/daily/${symbol}/prices?token=32eb05433ffa0f75d6c5b3ba881d7b14f1c2a5f5`
+      const stockData = await $.post(
+        '/api/stocks/tiingo/get-daily',
+        {symbol: symbol}
       );
       const currentPrice = stockData[0].adjClose;
       const stock = { stockId: id, currentStocKPrice: currentPrice };

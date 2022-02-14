@@ -4,16 +4,18 @@
 // ******************************************************************************
 // *** Dependencies
 // =============================================================
-var express = require("express");
-var exphbs = require('express-handlebars')
+const express = require("express");
+const exphbs = require('express-handlebars')
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Sets up the Express App
 // =============================================================
-var app = express();
-var PORT = process.env.PORT || 8080;
+const app = express();
+const PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
-var db = require("./models");
+const db = require("./models");
+// app.use(morgan('dev'));
 
 //Setting the handlebars extension to .hbs
 app.engine('.hbs', exphbs({ extname: '.hbs', defaultLayout: "main" }));
@@ -40,11 +42,13 @@ require("./controller/stocksController")(app);
 require("./controller/categoriesController")(app);
 require("./controller/htmlController")(app);
 
+app.use('/api/stocks/tiingo/**', createProxyMiddleware({ target: 'https://api.tiingo.com', changeOrigin: true }));
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: false , alter : true }).then(function () {
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
     });
 });
+ 
