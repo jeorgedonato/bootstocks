@@ -66,11 +66,6 @@ WHERE I CAN make watchlists and mock portfolios
 * Duyen Pham https://github.com/phtrmd8
 * Raymond Tieu https://github.com/raytieu
 
-
-## Github Link:
-https://github.com/phtrmd8/BootStocks
-
-
 ## Heroku Deployed Link:
 https://bootstocksapp.herokuapp.com/
 
